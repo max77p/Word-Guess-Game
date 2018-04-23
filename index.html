@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotronStyle">
+        <div class="container insideContainerStyle">
+            <div class="row">
+                <div class="col-md-12 scoreTab">
+                    <h3 class="score">Wins:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="gameTitle">
+                        The Hangman game
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 gameMiddleRow">
+                    <div class="row">
+                        <div class="col-md-6 middleRowSplit1">
+                            <img src="assets/images/hangmansystem" alt="hangman" class="imgStyle">
+
+                            <img src="assets/images/test.png" alt="hangman" class="showMan manHead">
+                            <img src="assets/images/torso.png" alt="hangman" class="showMan manTorso">
+                            <img src="assets/images/righthand.png" alt="hangman" class="showMan rightHand">
+                            <img src="assets/images/lefthand.png" alt="hangman" class="showMan leftHand">
+                            <img src="assets/images/rightleg.png" alt="hangman" class="showMan rightLeg">
+                            <img src="assets/images/leftleg.png" alt="hangman" class="showMan leftLeg">
+
+                        </div>
+                        <div class="col-md-6 middleRowSplit2">
+                            <div id="alphabet">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 gameLastRow">
+                    <div class="row">
+                        <div class="col-md-6 middleRowSplit1">
+                            <div id="placehere">
+
+                            </div>
+
+                            <div class="buttonItem hvr-grow-shadow whenClicked">
+                                    <h4 class="startText">Start</h4>
+                                </div>
+
+                        </div>
+
+                        <div class="col-md-6 middleRowSplit2 gameMessages">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+        <script src="./assets/javascript/game.js"></script>
+
+
+</body>
+
+</html>

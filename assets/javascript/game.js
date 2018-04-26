@@ -1,155 +1,237 @@
 
 
+
+
 $(".gameMessages").prepend("Welcome to the schoolyard Hangman");
 
-//document.write("hangman game");
+var tempArr = [];
 var score = 7;
 var randomword;
 var hangmanarr;
-var words = new Array("monday", "parrot", "hockey","percy","november","zoo", "dollar","london");
+var winCount = 0;
+var convert;
 //console.log(words);
-$('.whenClicked').on( "click", function() {
-    restartGame();
-    startMessage();
+
+
+$('.whenClicked').on("click", function () {
+    listenforkey();
+    startGame();
+  
 });
 
 
+
+
 //fresh game start
-function restartGame(){
-    randomword=0;
-    hangmanarr=[];
-    score=7;
- $ ("#placehere").empty();
- $(".showMan").hide();
- $("#alphabet").empty();
-    
-randomword = words[Math.floor(Math.random() * words.length)];
-//console.log(randomword);
-hangmanarr = randomword.toUpperCase().split("");
-console.log(hangmanarr);
+function startGame() {
+    keysPressedArr = [];
+    displayMan = 0;
+    randomword = 0;
+    score = 7;
+    winCount = 0;
+    hangmanarr = [];
+    convert=0;
+    tempArr=[];
+    $(".hideMan").hide();
+    $("#placehere").empty();
+    $(".showMan").hide();
+    $("#alphabet").empty();
+    startMessage();
+    var words = new Array("Toronto", "yosemite", "travel", "wonderland", "dog", "business", "candy");
+    randomword = words[Math.floor(Math.random() * words.length)];
+    hangmanarr = randomword.toUpperCase().split("");
+    //console.log(randomword);
 
-//add the blanks to html
-for (var i = 0; i < hangmanarr.length; i++) {
-    var x = document.getElementById('placehere');
-    var spacing = "&nbsp;&nbsp;";
-    x.innerHTML += '<span>' + "__" +spacing+ '</span>' + "  ";
-  }
-  
+    console.log(hangmanarr);
+
+    //add the blanks to html
+    for (var i = 0; i < hangmanarr.length; i++) {
+        var x = document.getElementById('placehere');
+        var spacing = "&nbsp;&nbsp;";
+        x.innerHTML += '<span class="blankSpace">' + "__" + spacing + '</span>' + "  ";
+    }
+
 }
-
-
-
-
-
-//lettersGuessed
-function lettersGuessed(lg){
-    var y=document.getElementById('alphabet');
-    //console.log(lg);
-    var spacing = "&nbsp;&nbsp;";
-    y.innerHTML +=lg+spacing;
-}
-
-
 
 
 
 var regex = new RegExp(/[a-zA-Z.]/);
 
-var lastkey;
-//console.log(/[a-zA-Z.]/.test(shan));
-document.addEventListener('keyup', function(event) {
-  var convert = String.fromCharCode(event.keyCode);
-  //console.log(regex.test(convert));
- // console.log(lastkey1);
+function listenforkey(element) {
 
-  if (newarr.indexOf(convert) < 0 && regex.test(convert) === true) {
-    lettersPressed(convert);
-    //console.log("invalid");
-    lettersGuessed(convert);
-  }
+    document.addEventListener('keyup', function (event) {
+        //console.log(event.keyCode);
+      convert = String.fromCharCode(event.keyCode);
 
-  if (hangmanarr.indexOf(convert) > -1) {
-    //console.log("you got it!");
-    console.log("correct!");
-    insertLetter(convert);
-  } else {
-   keepScore(convert);
-  }
-  
-lastkey=convert;
-});
+        if (hangmanarr.indexOf(convert) < 0 && regex.test(convert) === true) {
+            
+            lettersPressed(convert);
+            score--;
+            showBody();
+            keepScore(convert);
+        }
+        else if (hangmanarr.indexOf(convert) >= 0 && regex.test(convert) === true); {
 
-//add all letters pressed on keyboard in array
-var newarr = [];
-function lettersPressed(x) {
-  newarr.push(x);
-  console.log(newarr);
+            insertLetter(convert);
+
+            lettersPressed(convert);
+        }
+
+        
+
+
+    });
 }
+
+
+//lettersGuessed --push all non repeating letters to html
+/*function lettersGuessed(lg) {
+
+    var y = document.getElementById('alphabet');
+    //console.log(lg);
+    var spacing = "&nbsp;&nbsp;";
+    y.innerHTML += lg + spacing;
+
+}*/
+
+
+
+//add all letters pressed on keyboard in array, but not including repeating letters
+
+var keysPressedArr = [];
+function lettersPressed(x) {
+   //console.log(keysPressedArr);
+   var y = document.getElementById('alphabet');
+   var spacing = "&nbsp;&nbsp;";
+   if(keysPressedArr.indexOf(x)<0){
+        keysPressedArr.push(x);
+        //console.log(x);
+        var spacing = "&nbsp;&nbsp;";
+        y.innerHTML += x + spacing;
+    }
+    else{
+        return false;
+    }
+   
+}
+
+
+
+
+
 
 //keepscore
-function keepScore(c) {
-console.log(lastkey);
-if(c!=lastkey && score>0){
-score--;
-startMessage();
-showBody();
-
-//console.log("try again");
-//console.log(score);
-}
-if(score<=0){
-alert("you lost the game");
-showGameEnd();
-}
-
-}
-
-//win counter
-function winsCounter(){
-
-}
-
-//game messages function
-function startMessage(){
-    $(".gameMessages").empty().prepend("You have"+" "+score+" "+ "guesses");
+function keepScore(c) { 
+    
+    if(score==0){
+        alert("gameover");
+       
     }
+    else{
+        return false;
+    }
+        
+    
     
 
-//show piece of man when answer wrong
-var displayMan=0;
-function showBody(){
-    var k=document.getElementsByClassName('showMan');
-    if(k.length>displayMan){
-   
-        k[displayMan].style.display="block";
-        displayMan++;
-    }
-    }
-    
-
+}
 
 //show end of game screen
-function showGameEnd(){
+function showGameWin(tempKey, pressedkey) {
+    //var checkarray=tempKey.join("").split("");
+    var guessedWord = tempKey.join("");
+    var mainWord = hangmanarr.join("");
+    console.log(mainWord);
+
+    var mainIdx = hangmanarr.length;
+    //console.log(mainIdx);
+    if (guessedWord === mainWord) {
+        winsCounter();
+    }
+
+
+}
+
+
+
+//win counter
+function winsCounter() {
+    $(".gameMessages").empty().prepend("You have won!");
+    winCount++;
+    $("#winNumber").html(winCount);
+
+}
+
+
+
+
+
+//game messages function
+function startMessage() {
+    $(".gameMessages").empty().prepend("You have" + " " + score + " " + "guesses");
+}
+
+
+
+function sendRepeatMessage(c) {
+    $(".gameMessages").empty().prepend("You have pressed and invalid key or repeated a letter");
+    setTimeout(function () {
+        $(".gameMessages").empty().prepend("You have" + " " + score + " " + "guesses");
+    }, 2000);
+
+}
+
+//show piece of man when answer wrong
+var displayMan = 0;
+function showBody() {
+    var k = document.getElementsByClassName('showMan');
+    console.log(k);
+    if(k.length > displayMan){
+        k[displayMan].style.display = "block";
+        displayMan++;
+    }
+    else{
+        console.log(displayMan);
+    }
+    
     
 }
+
+
+
+
 
 
 //insert letter into html
 function insertLetter(y) {
-  var element = document.getElementsByTagName('span'); //get array of the html span
-  //console.log(element[0].innerHTML);
-  var findInArray = [];
-  for (var i = 0; i < hangmanarr.length; i++) {
-    if (hangmanarr[i] === y) {
-      findInArray.push(i);
+    //console.log(y);
+    var element = document.getElementsByClassName('blankSpace'); //get array of the html span
+
+
+    var findInArray = [];
+    for (var i = 0; i < hangmanarr.length; i++) {
+
+        if (hangmanarr[i] === y) {
+            findInArray.push(i);//push position of letter to this array
+            tempArr[i] = y;
+        }
+
     }
-  }
 
-  for (var k = 0; k < findInArray.length; k++) {
-    element[findInArray[k]].innerHTML = y;
-  }
+    console.log(tempArr);
 
-  //console.log(findInArray);
-  //console.log(s);
-  //;
+
+    for (var k = 0; k < findInArray.length; k++) {
+
+        element[findInArray[k]].innerHTML = y;//adding matched letter to inner html of span according to position
+
+
+
+
+    }
+
+    showGameWin(tempArr, y);
+
+
 }
+//console.log(tempArr.join("").toUpperCase().split(""));

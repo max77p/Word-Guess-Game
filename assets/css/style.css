@@ -12,9 +12,9 @@ margin:auto auto;
 padding:0;
 
 }
-.showMan{
+/*.showMan{
     display:none;
-}
+}*/
 .gameMessages{
     color: #ffffff;
     font-size: 1.3em;
@@ -36,7 +36,7 @@ padding:0;
    
 }
 
-.score,.gameTitle{
+#score,.gameTitle{
     margin:0;
     color:#ffffff !important;
 }

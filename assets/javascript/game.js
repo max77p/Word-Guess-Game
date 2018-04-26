@@ -1,22 +1,25 @@
 
 
 
+    $(".gameMessages").prepend("Welcome to the schoolyard Hangman");
 
-$(".gameMessages").prepend("Welcome to the schoolyard Hangman");
+
+
 
 var tempArr = [];
-var score = 7;
+var score=7;
 var randomword;
 var hangmanarr;
 var winCount = 0;
 var convert;
+var gameOver;
 //console.log(words);
 
 
-$('.whenClicked').on("click", function () {
+$('.whenClicked').on("click", function () {  
     listenforkey();
     startGame();
-  
+    gameOver=false;
 });
 
 
@@ -28,7 +31,6 @@ function startGame() {
     displayMan = 0;
     randomword = 0;
     score = 7;
-    winCount = 0;
     hangmanarr = [];
     convert=0;
     tempArr=[];
@@ -61,23 +63,27 @@ function listenforkey(element) {
 
     document.addEventListener('keyup', function (event) {
         //console.log(event.keyCode);
+        
+        if(gameOver){
+            return;
+        }
+      
       convert = String.fromCharCode(event.keyCode);
-
-        if (hangmanarr.indexOf(convert) < 0 && regex.test(convert) === true) {
-            
-            lettersPressed(convert);
-            score--;
-            showBody();
-            keepScore(convert);
+        if (hangmanarr.indexOf(convert) < 0 && regex.test(convert) === true && keysPressedArr.indexOf(convert)<0) {          
+            lettersPressed(convert);          
+            score--; 
+            console.log(score);
+            startMessage();     
+               showBody();
         }
         else if (hangmanarr.indexOf(convert) >= 0 && regex.test(convert) === true); {
-
-            insertLetter(convert);
-
+            insertLetter(convert);          
             lettersPressed(convert);
         }
-
-        
+        if(score<1){
+            gameOverMsg();
+        }
+  
 
 
     });
@@ -103,37 +109,21 @@ function lettersPressed(x) {
    //console.log(keysPressedArr);
    var y = document.getElementById('alphabet');
    var spacing = "&nbsp;&nbsp;";
-   if(keysPressedArr.indexOf(x)<0){
+   if(keysPressedArr.indexOf(x)<0 && regex.test(convert) === true){
         keysPressedArr.push(x);
-        //console.log(x);
         var spacing = "&nbsp;&nbsp;";
         y.innerHTML += x + spacing;
     }
     else{
-        return false;
+        return;
     }
    
 }
 
 
-
-
-
-
 //keepscore
-function keepScore(c) { 
-    
-    if(score==0){
-        alert("gameover");
-       
-    }
-    else{
-        return false;
-    }
-        
-    
-    
-
+function gameOverMsg() {  
+    $(".gameMessages").empty().prepend("Game Over!");   
 }
 
 //show end of game screen
@@ -141,14 +131,14 @@ function showGameWin(tempKey, pressedkey) {
     //var checkarray=tempKey.join("").split("");
     var guessedWord = tempKey.join("");
     var mainWord = hangmanarr.join("");
-    console.log(mainWord);
+    //console.log(mainWord);
 
     var mainIdx = hangmanarr.length;
     //console.log(mainIdx);
     if (guessedWord === mainWord) {
-        winsCounter();
+        winsCounter(); 
+        gameOver=true; 
     }
-
 
 }
 
@@ -159,7 +149,6 @@ function winsCounter() {
     $(".gameMessages").empty().prepend("You have won!");
     winCount++;
     $("#winNumber").html(winCount);
-
 }
 
 
@@ -178,7 +167,6 @@ function sendRepeatMessage(c) {
     setTimeout(function () {
         $(".gameMessages").empty().prepend("You have" + " " + score + " " + "guesses");
     }, 2000);
-
 }
 
 //show piece of man when answer wrong
@@ -186,15 +174,10 @@ var displayMan = 0;
 function showBody() {
     var k = document.getElementsByClassName('showMan');
     console.log(k);
-    if(k.length > displayMan){
+    if(k.length>displayMan){
         k[displayMan].style.display = "block";
-        displayMan++;
+        displayMan++;   
     }
-    else{
-        console.log(displayMan);
-    }
-    
-    
 }
 
 

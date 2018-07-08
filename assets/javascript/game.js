@@ -39,8 +39,9 @@ var hangmanGame = {
         }
 
     },
-
+    keyPressed:'',
     listenforkey: function () {
+        var self=this;
         document.addEventListener('keyup', function (event) {
             if (gameOver) {
                 return;
@@ -48,18 +49,18 @@ var hangmanGame = {
 
             convert = String.fromCharCode(event.keyCode);
             if (hangmanarr.indexOf(convert) < 0 && regex.test(convert) === true && keysPressedArr.indexOf(convert) < 0) {
-                lettersPressed(convert);
+                self.lettersPressed(convert);
                 score--;
                 console.log(score);
                 startMessage();
-                showBody();
+                self.showBody();
             }
             else if (hangmanarr.indexOf(convert) >= 0 && regex.test(convert) === true); {
                 insertLetter(convert);
                 lettersPressed(convert);
             }
             if (score < 1) {
-                gameOverMsg();
+                self.gameOverMsg();
             }
         });
 
@@ -262,9 +263,6 @@ function listenforkey(element) {
         if (score < 1) {
             gameOverMsg();
         }
-
-
-
     });
 }
 
@@ -365,12 +363,18 @@ function insertLetter(y) {
         if (hangmanarr[i] === y) {
             findInArray.push(i);//push position of letter to this array
             tempArr[i] = y;
+            
         }
+        console.log(hangmanarr[i]);
     }
     for (var k = 0; k < findInArray.length; k++) {
 
         element[findInArray[k]].innerHTML = y;//adding matched letter to inner html of span according to position
     }
+    console.log(tempArr);
 
     showGameWin(tempArr, y);
 }
+
+
+

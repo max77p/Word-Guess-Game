@@ -15,83 +15,77 @@
 
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 
-
 </head>
 
 <body>
 
-    <div class="jumbotron jumbotronStyle">
-        <div class="container insideContainerStyle">
-            <div class="row">
-                <div class="col-md-12 scoreTab">
-                    <h3 id="score">Wins:
-                        <span id="winNumber"></span>
-                    </h3>
 
-                    <div class="wrapper">
-                        <button class="btn btn-secondary hintBtn" type="button">
-                            Hint?
-                        </button>
-                  
+    <div class="container insideContainerStyle">
+        <div class="row scoreTab">
 
-                    </div>
+            <h3 id="score">Wins:
+                <span id="winNumber"></span>
+            </h3>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="gameTitle">
-                        The Hangman game
-                    </h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 gameMiddleRow">
-                    <div class="row">
-                        <div class="col-md-6 middleRowSplit1">
-                            <img src="assets/images/hangmansystem" alt="hangman" class="imgStyle">
+            <div class="wrapper">
+                <button class="btn btn-secondary hintBtn" type="button">
+                    Hint?
+                </button>
 
-                            <img src="assets/images/test.png" alt="hangman" class="showMan hideMan manHead">
-                            <img src="assets/images/torso.png" alt="hangman" class="showMan hideMan manTorso">
-                            <img src="assets/images/righthand.png" alt="hangman" class="showMan hideMan rightHand">
-                            <img src="assets/images/lefthand.png" alt="hangman" class="showMan hideMan leftHand">
-                            <img src="assets/images/rightleg.png" alt="hangman" class="showMan hideMan rightLeg">
-                            <img src="assets/images/leftleg.png" alt="hangman" class="showMan hideMan leftLeg">
 
-                        </div>
-                        <div class="col-md-6 middleRowSplit2">
-                            <div id="alphabet">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12 gameLastRow">
-                    <div class="row">
-                        <div class="col-md-6 middleRowSplit1">
-                            <div id="placehere">
 
-                            </div>
+        </div>
+       
+        <div class="row gameMiddleRow">
+            <!-- <div class="row"> -->
+                <h2 class="gameTitle">
+                    The Hangman game
+                </h2>
+            <!-- </div> -->
+            <div class="col-md-6 middleRowSplit1">
+                   
+                <div class="hangmanAll">
+                <img src="assets/images/hangmansystem" alt="hangman" class="imgStyle">
 
-                            <div class="buttonItem hvr-grow-shadow whenClicked">
-                                <h4 class="startText">Start</h4>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-6 middleRowSplit2 gameMessages">
-
-                        </div>
-                    </div>
+                <div class="restOfBody">
+                    <img src="assets/images/test.png" alt="hangman" class="showMan hideMan manHead">
+                    <img src="assets/images/torso.png" alt="hangman" class="showMan hideMan manTorso">
+                    <img src="assets/images/righthand.png" alt="hangman" class="showMan hideMan rightHand">
+                    <img src="assets/images/lefthand.png" alt="hangman" class="showMan hideMan leftHand">
+                    <img src="assets/images/rightleg.png" alt="hangman" class="showMan hideMan rightLeg">
+                    <img src="assets/images/leftleg.png" alt="hangman" class="showMan hideMan leftLeg">
                 </div>
+            </div>
+            </div>
+            <div class="col-md-6 middleRowSplit2">
+                <div id="alphabet">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row bottomRowStyle">
+            <div class="col-md-6 middleRowSplit1">
+                <div id="placehere">
+
+                </div>
+
+
+
+            </div>
+
+            <div class="col-md-6 middleRowSplit2 gameMessages">
+
             </div>
 
         </div>
+        <div class="buttonItem hvr-grow-shadow whenClicked">
+            <h4 class="startText">Start</h4>
+        </div>
+
+    </div>
 
 
 
@@ -103,9 +97,9 @@
 
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
-        <script src="./assets/javascript/game.js"></script>
+    <script src="./assets/javascript/game.js"></script>
 
 
 </body>

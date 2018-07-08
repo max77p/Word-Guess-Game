@@ -12,9 +12,16 @@ body {
     padding-bottom: 1.6em;
 }
 
-.restOfBody {
-    left: -4.5em;
+.mainBody {
+    position:relative;
+    /* left: -1.3em;
+    top: .6em;
+    position: absolute; */
+}
+.restofBody{
     position: absolute;
+    left: -1.2em;
+    top: .5em;
 }
 
 .gameMessages {
@@ -107,7 +114,7 @@ body {
 
 .imgStyle {
     position: absolute;
-    max-width: 25em;
+    max-width: 30em;
     height: auto;
 }
 
@@ -230,11 +237,11 @@ body {
     /* margin-bottom: -4em; */
     color: white;
     width: 25.5em;
-    padding-bottom: 1em !important;
+    /* padding-bottom: 1em !important; */
     background: url(../images/start.png) no-repeat center;
     background-size: contain;
     text-align: center;
-    /* padding: 1.4em; */
+    padding: 1.7em;
     justify-content: center;
     display: flex;
     /* align-content: center; */
@@ -265,30 +272,43 @@ body {
         max-height: 50em;
         height:100%;
     }
+  
 }
 
-@media (min-width: 768px) {
+@media (max-width: 992px) {
     .insideContainerStyle {
-        max-width: 50% !important;
-        /* max-height: 50em; */
+        max-width: 30em;
         height:100%;
+     }
+    /* .buttonItem{
+        margin-bottom: 1.6em;
+    } */
+    .middleRowSplit1, .middleRowSplit2 {
+        height: 10em;
+        
+    } 
+    .correctLettersRow{
+        height:2em;
     }
-    .buttonItem{
-        margin-bottom: 1.6em !important;
+    .guessedWordsRow{
+        margin-top:10em;
+        text-align:center;
     }
-}
+    .bottomRowStyle{
+        height:20em;
+    }
 
-@media (max-width: 768px) {
-    .insideContainerStyle {
-        max-width: 100% !important;
-        /* max-height: 50em; */
-        height:100%;
-    }
-    .buttonItem{
-        margin-bottom: 3em !important;
-    }
-}
+ 
+} 
+
+
+
+
 
 .hangmanAll{
     height:100%;
+}
+
+.showMan{
+
 }
